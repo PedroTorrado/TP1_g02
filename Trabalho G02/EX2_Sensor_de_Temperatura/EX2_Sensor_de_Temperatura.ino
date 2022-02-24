@@ -21,8 +21,10 @@ void loop(){
     digitalWrite(led_green, LOW);
     Serial.print("Temperatura: ");
     Serial.println(tmp);
-    delay(500);
+    delay(1000);
     digitalWrite(Buzz, HIGH);
+    delay(2000);
+    digitalWrite(Buzz, LOW);
   }
   
   else{
