@@ -23,9 +23,19 @@ Utilizando um sensor de proximidade (Sensor Ultrasonico) e um Piezo Buzzer, demo
 
 ---
 
-## EX1 Desempenho CPU
+# EX1 Desempenho CPU
+## Circuito
 
 <img src="https://github.com/Cordelios810/TP1_g02/blob/main/Trabalho%20G02/EX1_Desempenho_CPU/Circuito_EX1.png" width="400"/>
+
+| Componente | Pin Digital |
+| --- |:---:|
+| LED1 Verde | 13 |
+| LED2 Branco | 12 |
+| LED3 Vermelho | 11 |
+| LED4 Verde | 10 |
+| LED5 Branco | 9 |
+| LED6 Vermelho | 8 |
 
 <img src="https://github.com/Cordelios810/TP1_g02/blob/main/Trabalho%20G02/EX2_Sensor_de_Temperatura/Circuito_EX2.png?raw=true" width="400"/>
 
