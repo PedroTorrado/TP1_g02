@@ -19,11 +19,15 @@ Demonstrar o funcionamento de um sensor de temperatura (TMP36), utilizando o ser
 ---
 <strong>EX3 Proximidade</strong>
 
-Utilizando um sensor de proximidade (Sensor Ultrasonico) e um Piezo Buzzer, demonstrar o seu funcionamento, usando o serial monitor para introduzir os comandos necessários.
+Utilizando um sensor de proximidade (Sensor Ultrasonico) e um Piezo Buzzer, demonstrar o seu funcionamento, utilizando o serial monitor para introduzir os comandos necessários.
 
 ---
 
 ## EX1 Desempenho CPU
 
 <img src="https://github.com/Cordelios810/TP1_g02/blob/main/Trabalho%20G02/EX1_Desempenho_CPU/Circuito_EX1.png" width="400"/>
+
+<img src="https://github.com/Cordelios810/TP1_g02/blob/main/Trabalho%20G02/EX2_Sensor_de_Temperatura/Circuito_EX2.png?raw=true" width="400"/>
+
+<img src="https://github.com/Cordelios810/TP1_g02/blob/main/Trabalho%20G02/EX3_Proximidade/Circuito_EX3.png?raw=true" width="400"/>
      
