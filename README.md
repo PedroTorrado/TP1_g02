@@ -14,7 +14,7 @@ Utilizando Leds criar uma sequência que liga apenas uma vez cada Led.
 ---
 <strong>EX2 Sensor de Temperatura</strong>
 
-Demonstrar o funcionamento de um sensor de temperatura (TMP36), utilizando o serial monitor para demonstrar os resultados e Leds para demonstrar se o valor se encontra abaixo ou acima de certo limite.
+Demonstrar o funcionamento de um sensor de temperatura (TMP36), utilizando o serial monitor para apresntar os resultados e Leds para demonstrar se o valor se encontra abaixo ou acima de certo limite.
 
 ---
 <strong>EX3 Proximidade</strong>
@@ -42,6 +42,8 @@ Utilizando um sensor de proximidade (Sensor Ultrasonico) e um Piezo Buzzer, demo
 ```C++
 
 ```
+
+---
 
 # EX2 Sensor de Temperatura
 ## Circuito
@@ -111,7 +113,7 @@ if(tmp>40){
 Se não:
 
 1. Ligar o Led Verde
-2. Ligar o Led Red 
+2. Ligar o Led Red
 3. Desligar o Piezo Buzzer
 
 ```C++
@@ -122,4 +124,24 @@ else{
 }
 ```
 
+---
+
+# EX3 Proximidade
+## Circuito
+
 <img src="https://github.com/Cordelios810/TP1_g02/blob/main/Trabalho%20G02/EX3_Proximidade/Circuito_EX3.png?raw=true" width="400"/>
+
+| Componente          | Pin Digital |
+| :---                |    :---:    |
+| LED Vermelho        |      13     |
+| Buzzer              |      A5     |
+| Sensor de distância |      A1     |
+
+## Código
+
+Definir as variáveis "*distance*" e "*input*" como variáveis globais, podendo assim não só utiliza-la entre funções como é o caso da variável "*distance*" ou apenas não ser afetada pelo início do loop() como é o caso de "*input*".
+
+```C++
+float distance;
+char input = 'w'; //defining input as w (waiting) as default
+```
