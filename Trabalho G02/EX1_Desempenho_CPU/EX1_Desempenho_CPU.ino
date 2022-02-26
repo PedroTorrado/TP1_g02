@@ -1,60 +1,56 @@
 // C++ code
 //
-#define G1 13 //Led Green 1
-#define W1 12
-#define R1 11
+#define led_green_1 13   //Led Green 1
+#define led_white_1 12
+#define led_red_1 11
 
-#define G2 10
-#define W2 9
-#define R2 8
+#define led_green_2 10
+#define led_white_2 9
+#define led_red_2 8
 
 int SEQ(){
-  digitalWrite(G1, LOW);
-  digitalWrite(W1, LOW);
-  digitalWrite(R1, LOW);
-  
-  digitalWrite(G2, LOW);
-  digitalWrite(W2, LOW);
-  digitalWrite(R2, LOW);
-  
-  digitalWrite(G1, HIGH);
+  digitalWrite(led_green_1, LOW);
+  digitalWrite(led_white_1, LOW);
+  digitalWrite(led_red_1, LOW);
+
+  digitalWrite(led_green_2, LOW);
+  digitalWrite(led_white_2, LOW);
+  digitalWrite(led_red_2, LOW);
+
+  digitalWrite(led_green_1, HIGH);
   delay(1000);
-  digitalWrite(W1, HIGH);
+  digitalWrite(led_white_1, HIGH);
   delay(1000);
-  digitalWrite(R1, HIGH);
+  digitalWrite(led_red_1, HIGH);
   delay(1000);
-  
-  digitalWrite(G2, HIGH);
+
+  digitalWrite(led_green_2, HIGH);
   delay(1000);
-  digitalWrite(W2, HIGH);
+  digitalWrite(led_white_2, HIGH);
   delay(1000);
-  digitalWrite(R2, HIGH);
+  digitalWrite(led_red_2, HIGH);
   delay(1000);
-  
-  digitalWrite(G1, LOW);
-  digitalWrite(W1, LOW);
-  digitalWrite(R1, LOW);
-  
-  digitalWrite(G2, LOW);
-  digitalWrite(W2, LOW);
-  digitalWrite(R2, LOW);
+
+  digitalWrite(led_green_1, LOW);
+  digitalWrite(led_white_1, LOW);
+  digitalWrite(led_red_1, LOW);
+
+  digitalWrite(led_green_2, LOW);
+  digitalWrite(led_white_2, LOW);
+  digitalWrite(led_red_2, LOW);
 }
 
 void setup()
 {
-  pinMode(G1, OUTPUT); 
-  pinMode(W1, OUTPUT);
-  pinMode(R1, OUTPUT);
-  
-  pinMode(G2, OUTPUT);
-  pinMode(W2, OUTPUT);
-  pinMode(R2, OUTPUT);
-  
+  pinMode(led_green_1, OUTPUT);
+  pinMode(led_white_1, OUTPUT);
+  pinMode(led_red_1, OUTPUT);
+
+  pinMode(led_green_2, OUTPUT);
+  pinMode(led_white_2, OUTPUT);
+  pinMode(Led_red_2, OUTPUT);
+
   SEQ();
-
 }
 
-void loop()
-{
- 
-}
+void loop(){}
