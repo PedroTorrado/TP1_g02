@@ -146,11 +146,6 @@ Após ler o resultado da temperatura utilizamos o mesmo de forma a que se possam
 
 Se a temperatura for acima de 40ºC:
 
-1. Ligar o Led Vermelho;
-2. Desligar o Pin Verde;
-3. Apresentar a temperatura no Serial Monitor (Utilizado a partir do Arduino IDE ou equivalente);
-4. Liga o Piezo Buzzer durante dois segundos e volta a desligá-lo.
-
 ```C++
 if(tmp>40){
   digitalWrite(led_red, HIGH);
@@ -164,11 +159,10 @@ if(tmp>40){
 }
 ```
 
-Se não:
-
-1. Ligar o Led Verde
-2. Ligar o Led Red
-3. Desligar o Piezo Buzzer
+1. Ligar o Led Vermelho;
+2. Desligar o Pin Verde;
+3. Apresentar a temperatura no Serial Monitor (Utilizado a partir do Arduino IDE ou equivalente);
+4. Liga o Piezo Buzzer durante dois segundos e volta a desligá-lo.
 
 ```C++
 else{
@@ -177,6 +171,12 @@ else{
   digitalWrite(Buzz, LOW);
 }
 ```
+
+Se não:
+
+1. Ligar o Led Verde
+2. Ligar o Led Red
+3. Desligar o Piezo Buzzer
 
 ---
 
@@ -193,12 +193,128 @@ else{
 
 ## Código
 
-Definir as variáveis "*distance*" e "*input*" como variáveis globais, podendo assim não só utiliza-la entre funções como é o caso da variável "*distance*" ou apenas não ser afetada pelo início do loop() como é o caso de "*input*".
-
 ```C++
 float distance;
 char input = 'w'; //defining input as w (waiting) as default
 ```
+
+Definindo as variáveis "*distance*" e "*input*" como variáveis globais, podemos assim não só utiliza-las entre funções como é o caso da variável "*distance*" ou apenas não ser afetada pelo início do loop( ) como é o caso de "*input*" que assim é definida como "w" apenas até ser alterada dentro do loop( ).
+
+```C++
+int superSonicSensor(){
+  //function to use value read by the sensor
+  pinMode(SIG, OUTPUT);
+  digitalWrite(SIG,LOW);
+  delayMicroseconds(3);
+  digitalWrite(SIG,HIGH);
+  delayMicroseconds(5);
+  digitalWrite(SIG,LOW);
+
+  pinMode(SIG, INPUT);
+  float impulseDuration = pulseIn(SIG,HIGH);
+  distance = (impulseDuration/29.4)/2;
+  Serial.println(distance);
+
+  return distance;
+}
+```
+
+O pin definido como SIG é o pin de ligação ao sensor super sónico, e este funciona enviando um sinal e verificando quanto tempo demora o mesmo a ser recebido de volta. Assim, no bloco de código acima podemos verificar essa mesma ação.
+
+SIG começa por ser definido como um OUTPUT podendo assim produzir um sinal quando indicado pelo Arduino, e é exatamente isso que procede a fazer, começa por ser definido como LOW, espera 3 milisegundos, é alterado para HIGH, produzindo assim um sinal e continuando a produzir o mesmo durante 5 milisegundos e voltando a mudar para LOW, parando de produzir o mesmo sinal.
+
+Após isso este é alterado de novo para INPUT de forma a poder receber o sinal, o que faz a partir da função "*pulseIn( )*" interpretando também o tempo que demorou o sinal e dando-lhe um valor analógico, que é alterado para uma distância em centímetros no final da função "*superSonicSensor( )*" este (a distância em centímetros) é o valor valor devolvido pela função.
+
+Continuando para a função "*Loop*":
+
+De forma a se poder produzir som a partir de um Buzzer de forma controlada, pode utilizar-se a seguinte função : "*tone(PinOutput,Frequência)*"
+
+De forma a utilizar-mos o buzzer de forma controlada e ter-mos resultados um pouco mais apreciáveis do que frequências aleatórias, decidi-mos utilizar notas músicais, mais especificamente as notas princípais de uma oitava (excluindo sustenidos e bemois), da 4ª oitava, incluindo ainda o Dó da 5ª oitava.
+
+```C++
+  int C4 = 262; //Dó 4
+  int D4 = 294; //Ré
+  int E4 = 330; //Mi
+  int F4 = 349; //Fá
+  int G4 = 392; //Sol
+  int A4 = 440; //Lá
+  int B4 = 494; //Si
+  int C5 = 523; //Dó 5
+```
+
+Distribuindo assim os valores de frequência que terá que ser produzida pelo Buzzer para produzir essas notas em variáveis específicas com o nome de cada uma em forma do nome de acorde.
+
+```C++
+if(Serial.available() > 0){
+  input = Serial.read();
+  Serial.println(input);
+}
+```
+
+O bloco de código acima tem como objetivo ler os valores lidos no Serial Monitor, da seguinte forma.
+
+Se uma alteração for detetada nos valores produzidos no serial monitor (sem alteração produz repetidamente o valor "-1"), e iguala o valor introduzido a uma variável "input". Após isso imprime a mesma como forma do utilizador puder verificar o que colocou.
+
+```C++
+//if input is w (waiting) the program does nothing and waits for a valid input
+if(input == 'w'){}
+```
+
+Se o input for w (como é definido no inicio do programa e também assim o seu valor default), este não faz nada, daí o if statement se encontrar vazio, este é utilizado apenas como forma de esperar pela introdução de um dos valores válidos como "R" ou "D".
+
+```C++
+else if(input == 'R' or input == 'r'){
+
+  digitalWrite(led_red, HIGH);
+
+  distance = superSonicSensor();
+
+```
+
+Se o valor de input for "R" ou "r" o programa liga o Led vermelhor e procede a utilzar a função "*superSonicSensor( )*" para obter o resultado da distância e iguala-lo a uma variavél (distance), após isso são feitos alguns cálculos.
+
+```C++
+  float max_distance_value = 330.71;
+  float min_distance_value = 2.23;
+  float range_distance_value = max_distance_value - min_distance_value;
+  float interval = range_distance_value/8; //41.05125
+```
+
+Estes cálculos têm como objetivo começar por determinar o intervalo entre o qual o sensor pode medir distância e utilizando esse valor criar 8 intervalos entre os quais podem ser definidas as notas antes específicadas (O valor entre intervalo deve ser aproximadamente 41).
+
+```C++
+  if(distance < min_distance_value + 1 * interval)){tone(Buzzer, C5);}
+  else if(distance < (min_distance_value + 2 * interval)){tone(Buzzer, B4);}
+  else if(distance < (min_distance_value + 3 * interval)){tone(Buzzer, A4);}
+  else if(distance < (min_distance_value + 4 * interval)){tone(Buzzer, G4);}
+  else if(distance < (min_distance_value + 5 * interval)){tone(Buzzer, F4);}
+  else if(distance < (min_distance_value + 6 * interval)){tone(Buzzer, E4);}
+  else if(distance < (min_distance_value + 7 * interval)){tone(Buzzer, D4);}
+  else{tone(Buzzer, C4);}
+}
+```
+
+Cada if statemente resumidamente faz o o cálculo da distância entre cada intervalo de forma a definir uma nota para cada e proceder a produzir esse som a partir da função tone( ), préviamente explicada.
+
+```C++
+//if user types D, LED and Buzzer turn off
+else if(input == 'D' or input == 'd'){
+  digitalWrite(led_red, LOW);
+  noTone(Buzzer);
+}
+```
+
+Caso o input seja "D" ou "d" este desliga o led e o Buzzer.
+
+```C++
+else{
+  Serial.println("The input was not recognized.");
+  Serial.println("Please use R or D to turn ON or OFF");
+  input = 'w';
+}
+```
+Este else refere-se ao if relacionado ao input de caracteres, sendo assim, se o input não for "R" ou "r", "D" ou "d" ou "w", este produz uma mensagem de erro a dizer que o input não é reconhecido e pede que selecione R para ligar o sistema ou D para o desligar e por fim, iguala o input a w deixando-o no estado de espera.
+
 ---
 
 # EX3_C Proximidade
@@ -236,4 +352,3 @@ else{
   digitalWrite(led_red, LOW);
   }
 ```
-
