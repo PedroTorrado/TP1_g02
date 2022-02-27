@@ -314,3 +314,41 @@ else{
 }
 ```
 Este else refere-se ao if relacionado ao input de caracteres, sendo assim, se o input não for "R" ou "r", "D" ou "d" ou "w", este produz uma mensagem de erro a dizer que o input não é reconhecido e pede que selecione R para ligar o sistema ou D para o desligar e por fim, iguala o input a w deixando-o no estado de espera.
+
+---
+
+# EX3_C Proximidade
+## Circuito
+
+<img src="https://github.com/Cordelios810/TP1_g02/blob/main/Trabalho%20G02/EX3_Proximidade_C/EX3_Proximidade_C.jpg" width="400"/>
+
+| Componente          | Pin Digital |
+| :---                |    :---:    |
+| LED Vermelho        |      13     |
+| Sensor PIR          |      A5     |
+
+O objectivo deste exercício é definir distância através de um sensor infravermelho, visto que o sensor PIR não consegue calcular distancias, pois este apenas detecta movimentos resolvemos realizar um circuito onde quando o sensor infravermelho detecta movimento um LED vermelho liga.
+
+Criar uma variavel "*val*" e defenir o valor desta variavel para 0.
+
+```C++
+int val = 0;
+```
+Após ler o resultado enviado pelo sensor que varia entre 0 (se não detetar nada) e 1018 (se detetar algum movimento) utilizamos o mesmo de forma a que se possam criar as reações pretendidas do sistema conforme as condições do mesmo, sendo essas:
+
+Se o valor for igual a 1018:
+1. O led vermelho liga.
+
+```C++
+if(val==1018){
+  digitalWrite(led_red, HIGH);
+  }
+```
+Se não:
+1. O led vermelho desliga.
+
+```C++
+else{
+  digitalWrite(led_red, LOW);
+  }
+```
