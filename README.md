@@ -298,7 +298,7 @@ Cada if statemente resumidamente faz o o cálculo da distância entre cada inter
 
 Estas distâncias estão definidas da mesma forma que no gráfico abaixo.
 
-<img src="https://github.com/PedroTorrado/TP1_g02/blob/main/Trabalho%20G02/EX3_Proximidade/Distance%20Sensor%20Representation.jpg" width="400"/>
+<img src="https://github.com/PedroTorrado/TP1_g02/blob/main/Trabalho%20G02/EX3_Proximidade/Distance%20Sensor%20Representation.png" width="400"/>
 
 
 ```C++
