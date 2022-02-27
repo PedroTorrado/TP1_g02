@@ -59,13 +59,13 @@ void loop(){
     float range_distance_value = max_distance_value - min_distance_value;
     float interval = range_distance_value/8; //41.05125
 
-    if(distance < 43.29){tone(Buzzer, C5);}
-    else if(distance < (min_distance_value + 1 * interval)){tone(Buzzer, B4);}
-    else if(distance < (min_distance_value + 2 * interval)){tone(Buzzer, A4);}
-    else if(distance < (min_distance_value + 3 * interval)){tone(Buzzer, G4);}
-    else if(distance < (min_distance_value + 4 * interval)){tone(Buzzer, F4);}
-    else if(distance < (min_distance_value + 5 * interval)){tone(Buzzer, E4);}
-    else if(distance < (min_distance_value + 6 * interval)){tone(Buzzer, D4);}
+    if(distance < min_distance_value + 1 * interval)){tone(Buzzer, C5);}
+    else if(distance < (min_distance_value + 2 * interval)){tone(Buzzer, B4);}
+    else if(distance < (min_distance_value + 3 * interval)){tone(Buzzer, A4);}
+    else if(distance < (min_distance_value + 4 * interval)){tone(Buzzer, G4);}
+    else if(distance < (min_distance_value + 5 * interval)){tone(Buzzer, F4);}
+    else if(distance < (min_distance_value + 6 * interval)){tone(Buzzer, E4);}
+    else if(distance < (min_distance_value + 7 * interval)){tone(Buzzer, D4);}
     else{tone(Buzzer, C4);}
   }
 
