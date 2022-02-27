@@ -81,7 +81,7 @@ digitalWrite(led_white_2, LOW);
 digitalWrite(led_red_2, LOW);
 ```
 
-O bloco acima desliga todos os pins de forma a termos a certeza que estes se encontram desligados quando o programa começa e possamos assim ligá-los por ordem.
+O bloco acima desliga todos os pins de forma a termos a certeza que estes se encontram desligados quando o programa começa e possamos assim ligá-los por ordem. Utilizando este após o próximo bloco de código faz também com que todos os Leds se voltem a desligar, como pretendido.
 
 ```C++
 digitalWrite(led_green_1, HIGH);  // Turns pins on one by one
@@ -100,6 +100,7 @@ delay(1000);
 ```
 
 O bloco acima liga cada um dos pins com um segundo de pausa entre cada pela seguinte ordem:
+
 1. Led Verde 1
 2. Led Branco 1
 3. Led Vermelho 1
@@ -107,19 +108,10 @@ O bloco acima liga cada um dos pins com um segundo de pausa entre cada pela segu
 5. Led Branco 2
 6. Led Vermelho 2
 
-```C++
-digitalWrite(led_green_1, LOW);   // Turn off all pins
-digitalWrite(led_white_1, LOW);
-digitalWrite(led_red_1, LOW);
 
-digitalWrite(led_green_2, LOW);
-digitalWrite(led_white_2, LOW);
-digitalWrite(led_red_2, LOW);
-```
+Sendo que tudo o que a função delay() faz é parar o programa durante x tempo em milisegundos, é esta função que faz com que haja um delay entre cada pin a ser ligado.
 
-Sendo que tudo o que a função delay() faz é parar o programa durante x tempo em milisegundos, a fun
-
-Começa por, de forma a que este não se repita e apenas execute a ação pretendida uma vez, este é colocado dentro da função setup().
+De forma a poder tornar a ação criada mais simples e repetível esta foi criada dentro de uma nova função "*SEQ( )*" e de forma a que esta não se repita e apenas execute a ação pretendida uma vez, esta foi colocada dentro da função "*setup( )*".
 
 ---
 
