@@ -40,8 +40,86 @@ Utilizando um sensor de proximidade (Sensor Ultrasonico) e um Piezo Buzzer, demo
 ## Código
 
 ```C++
+#define led_green_1 13   //Led Green 1
+#define led_white_1 12
+#define led_red_1 11
 
+#define led_green_2 10
+#define led_white_2 9
+#define led_red_2 8
 ```
+
+Definir cada pin para o seu respetivo componente de forma a que mais tarde possamos referir aos componentes diretamente e não apenas aos pin que estão connectados, como no exemplo:
+
+```C++
+digitalWrite(led_green_1, HIGH);
+digitalWrite(13, HIGH);
+```
+
+Ambas as linhas fazem o mesmo, contudo, o segundo é mais fácil de entender tanto enquanto está a ser escrito como quando está a ser revisto.
+E muito resumidamente o que qualquer uma dessas duas linhas de código faz, é a base daquilo que é este programa.
+
+```C++
+digitalWrite(led_green_1, HIGH);
+```
+
+Define o pin em questão (neste caso led_green_1 e respetivamente o pin 13), como "*HIGH*", ou seja como ligado (5V).
+
+```C++
+digitalWrite(led_green_1, LOW);
+```
+
+Define esse mesmo pin como desligado (0V) ou "*LOW*".
+
+```C++
+digitalWrite(led_green_1, LOW);   // Turn off all pins
+digitalWrite(led_white_1, LOW);
+digitalWrite(led_red_1, LOW);
+
+digitalWrite(led_green_2, LOW);
+digitalWrite(led_white_2, LOW);
+digitalWrite(led_red_2, LOW);
+```
+
+O bloco acima desliga todos os pins de forma a termos a certeza que estes se encontram desligados quando o programa começa e possamos assim ligá-los por ordem.
+
+```C++
+digitalWrite(led_green_1, HIGH);  // Turns pins on one by one
+delay(1000);
+digitalWrite(led_white_1, HIGH);
+delay(1000);
+digitalWrite(led_red_1, HIGH);
+delay(1000);
+
+digitalWrite(led_green_2, HIGH);
+delay(1000);
+digitalWrite(led_white_2, HIGH);
+delay(1000);
+digitalWrite(led_red_2, HIGH);
+delay(1000);
+```
+
+O bloco acima liga cada um dos pins com um segundo de pausa entre cada pela seguinte ordem:
+1. Led Verde 1
+2. Led Branco 1
+3. Led Vermelho 1
+4. Led Verde 2
+5. Led Branco 2
+6. Led Vermelho 2
+
+```C++
+digitalWrite(led_green_1, LOW);   // Turn off all pins
+digitalWrite(led_white_1, LOW);
+digitalWrite(led_red_1, LOW);
+
+digitalWrite(led_green_2, LOW);
+digitalWrite(led_white_2, LOW);
+digitalWrite(led_red_2, LOW);
+```
+
+Sendo que tudo o que a função delay() faz é parar o programa durante x tempo em milisegundos, a fun
+
+Começa por, de forma a que este não se repita e apenas execute a ação pretendida uma vez, este é colocado dentro da função setup().
 
 ---
 
@@ -58,22 +136,6 @@ Utilizando um sensor de proximidade (Sensor Ultrasonico) e um Piezo Buzzer, demo
 | LED6 Vermelho      |      8      |
 
 ## Código
-
-```C++
-#define led_green 13
-#define led_red 12
-#define TMP A1
-#define Buzz A2
-```
-
-Definir cada pin para o seu respetivo componente de forma a que mais tarde possamos referir aos componentes diretamente e não apenas aos pin que estão connectados, como no exemplo:
-
-```C++
-digitalWrite(12, HIGH);
-digitalWrite(led_red, HIGH);
-```
-
-Ambas as linhas fazem o mesmo, contudo, o segundo é mais fácil de entender tanto enquanto está a ser escrito como quando está a ser revisto.
 
 ```C++
 float tmp = analogRead(TMP);
