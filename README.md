@@ -296,6 +296,11 @@ Estes cálculos têm como objetivo começar por determinar o intervalo entre o q
 
 Cada if statemente resumidamente faz o o cálculo da distância entre cada intervalo de forma a definir uma nota para cada e proceder a produzir esse som a partir da função tone( ), préviamente explicada.
 
+Estas distâncias estão definidas da mesma forma que no gráfico abaixo.
+
+<img src="https://github.com/PedroTorrado/TP1_g02/blob/main/Trabalho%20G02/EX3_Proximidade/Distance%20Sensor%20Representation.jpg" width="400"/>
+
+
 ```C++
 //if user types D, LED and Buzzer turn off
 else if(input == 'D' or input == 'd'){
